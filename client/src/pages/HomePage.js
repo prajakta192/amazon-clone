@@ -18,6 +18,8 @@ const HomePage = () => {
     fetchProductsData();
   }, []);
 
+  console.log(products);
+
   return (
     <main>
       <h1>Featured Products</h1>
