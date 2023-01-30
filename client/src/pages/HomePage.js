@@ -3,30 +3,15 @@ import React, { useReducer } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect} from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import Reducer from '../Reducer';
 
 //console.log(data);
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "FETCH_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_SUCCESS":
-      return { ...state, products: action.payload, loading: false };
-    case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
 
 
 const HomePage = ({curSymbol}) => {
   console.log(curSymbol)
 
-  const [{ loading, error, products }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, products }, dispatch] = useReducer(Reducer, {
     products: [],
     loading: true,
     error: "",
