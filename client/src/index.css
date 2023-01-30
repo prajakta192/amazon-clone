@@ -7,21 +7,26 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main{
+  height:100vh
+}
 header {
   padding: 1.5rem;
   background: #404040;
+  display: flex;
+  justify-content: space-between;
 }
-header a {
+header a{
   color: white;
   text-decoration: none;
   font-size: 1.5rem;
 }
-main {
-  margin: 1rem;
-}
 section.products {
   display: flex;
   flex-wrap: wrap;
+  margin: 1rem;
+}
+.products_section{
   margin: 1rem;
 }
 .product {
@@ -38,3 +43,36 @@ section.products {
   flex-direction: column;
   padding: 1em;
 }
+.toggle-btn__input{
+  visibility: hidden;
+}
+.toggle_btn{
+  width: 3.5rem;
+  height:1.5rem;
+  border-radius: 25px;
+  background-color: #82deff;
+  cursor: pointer;
+}
+.toggle-btn-section{
+  position: relative;
+}
+.toggle_btn::after{
+  content: " ";
+  position: absolute;
+  top: 10px;
+  left: 25px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  transition: .3s;
+  box-shadow: 0 5px 10px #9996;
+  background-color: #fff;
+}
+.dark_theme {
+  background-color: #333;
+  color: #fff;
+  }
+  .light_theme {
+  background-color: #fff;
+  color: #333;
+  }
