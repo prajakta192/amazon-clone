@@ -32,7 +32,7 @@ console.log(currency, curSymbol);
 <Header setCurrency={setCurrency} toggleTheme={toggleTheme}/>
 <Routes>
   <Route path='/' element={<HomePage curSymbol={curSymbol}/>} />
-  <Route path='/product/:id' element={<ProductPage />} />
+  <Route path='/products/:slug' element={<ProductPage />} />
 </Routes>
 </main>
     </BrowserRouter>

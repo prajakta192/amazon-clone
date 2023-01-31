@@ -84,3 +84,21 @@ section.products {
   .ratings i{
     color:#e3cc4d
   }
+  .btn-primary{
+    background-color:#f0c040;
+    border: none;
+    color: #000;
+  }
+  .btn-primary:hover{
+    background-color: #f08804;
+    border: none;
+    transition: all 1s;
+  }
+  .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
+    
+    background-color: #f08804;
+    border-color: none;
+}
+.img-large{
+  max-width: 100%;
+}
