@@ -76,3 +76,11 @@ section.products {
   background-color: #fff;
   color: #333;
   }
+  .rating_review{
+    display: flex;
+    gap:.5em;
+    margin-block-start: 1em;
+  }
+  .ratings i{
+    color:#e3cc4d
+  }

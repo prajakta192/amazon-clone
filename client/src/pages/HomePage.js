@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect} from 'react';
 import Reducer from '../Reducer';
+import Ratings from '../components/Ratings';
 
 //console.log(data);
 
@@ -55,7 +56,8 @@ console.log(products);
               <Link to={`/product/${product.slug}`}>
                 <span>{product.name}</span>
               </Link>
-              <span>
+              <Ratings ratings= {product.rating} numReviews={product.numReviews}/>
+               <span>
                 <strong>{curSymbol} {product.price}</strong>
               </span>
             </div>
