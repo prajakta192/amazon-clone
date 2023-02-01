@@ -1,9 +1,13 @@
+import { Helmet } from 'react-helmet-async'
 import {Link } from 'react-router-dom'
 
 const Header = (props) => {
     const {setCurrency, toggleTheme} = props
     return(
-        <header>
+      <header>
+        <Helmet>
+          <title>amazona</title>
+        </Helmet>
   <Link to='/'>amazona</Link>
   <div style={{display:'flex', justifyContent:'space-between', alignItems:'center',gap:'1em'}}>
 

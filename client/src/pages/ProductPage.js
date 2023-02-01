@@ -1,22 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useReducer } from 'react';
 import { Card, Col, ListGroup, ListGroupItem, Row, Badge, Button } from 'react-bootstrap';
+import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import Ratings from '../components/Ratings';
+import {reducer} from '../Reducer'
 
 
-const Reducer = (state, action) => {
-  switch (action.type) {
-    case "FETCH_REQUEST":
-      return { ...state, loading: true };
-    case "FETCH_SUCCESS":
-      return { ...state, product: action.payload, loading: false };
-    case "FETCH_FAIL":
-      return { ...state, loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
 
 const ProductPage = () => {
  //console.log(products)
@@ -26,7 +16,7 @@ const ProductPage = () => {
   const { slug } = useParams(); // will use obj destructuring method
 
   console.log(slug)
-  const [{ loading, error, product }, dispatch] = useReducer(Reducer, {
+  const [{ loading, error, product }, dispatch] = useReducer(reducer, {
     product: [],
     loading: true,
     error: "",
@@ -56,7 +46,10 @@ const ProductPage = () => {
     <Col md={4}>
       <ListGroup variant='flush'>
         <ListGroupItem>
-          <h2>{product.name}</h2>
+          <Helmet>
+
+          <title>{product.name}</title>
+          </Helmet>
         </ListGroupItem>
         <ListGroupItem>
           <Ratings ratings={product.rating} numReviews={product.numReviews}/>

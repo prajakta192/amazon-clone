@@ -30,7 +30,9 @@ console.log(currency, curSymbol);
      <main className={`${theme}_theme`}>
 
 <Header setCurrency={setCurrency} toggleTheme={toggleTheme}/>
+
 <Routes>
+
   <Route path='/' element={<HomePage curSymbol={curSymbol}/>} />
   <Route path='/products/:slug' element={<ProductPage />} />
 </Routes>
