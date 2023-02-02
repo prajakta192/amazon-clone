@@ -112,3 +112,7 @@ section.products {
 .img-large{
   max-width: 100%;
 }
+
+.alert-danger{
+  background: unset
+}

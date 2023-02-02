@@ -3,8 +3,11 @@ import React, { useEffect, useReducer } from 'react';
 import { Card, Col, ListGroup, ListGroupItem, Row, Badge, Button, Container } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
+import ErrorMEssage from '../components/ErrorMessage';
+import LoadingBox from '../components/LoadingBox';
 import Ratings from '../components/Ratings';
 import { reducer } from '../Reducer';
+import { productNotFound } from '../utils';
 
 
 
@@ -31,14 +34,14 @@ const ProductPage = () => {
       
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
-        dispatch({ type: "FETCH_FAIL", payload: err.message });
+        dispatch({ type: "FETCH_FAIL", payload: productNotFound(err)});
       }
     };
     fetchProductsData();
   }, [slug]);
   
   
-  return (loading?<div>...Loading</div>:error?<div>{error}</div>:
+  return (loading?<LoadingBox/>:error?<ErrorMEssage variant='danger'>{error}</ErrorMEssage>:
   <Container>
 
   <Row style={{maxWidth:'100vw'}}>

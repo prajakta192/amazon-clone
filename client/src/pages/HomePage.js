@@ -4,6 +4,8 @@ import axios from 'axios';
 import { useEffect} from 'react';
 import Reducer from '../Reducer';
 import Product from '../components/Product';
+import LoadingBox from '../components/LoadingBox';
+import ErrorMEssage from '../components/ErrorMessage';
 //console.log(data);
 
 
@@ -43,7 +45,7 @@ const HomePage = ({curSymbol, theme}) => {
       <h1>Featured Products</h1>
       <section className='products'>
         {
-        loading?<div>...Loading</div>:error?<div>{error}</div>:(
+        loading?<LoadingBox/>:error?<ErrorMEssage variant={danger}>{error}</ErrorMEssage>:(
           products.map((product) => (
           
             <Product product={product} curSymbol={curSymbol} key={product.slug}/>
