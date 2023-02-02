@@ -1,16 +1,16 @@
 import React, { useReducer } from 'react';
 //import data from '../config/data';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect} from 'react';
 import Reducer from '../Reducer';
-import Ratings from '../components/Ratings';
-
+import Product from '../components/Product';
 //console.log(data);
 
 
-const HomePage = ({curSymbol}) => {
-  console.log(curSymbol)
+
+
+const HomePage = ({curSymbol, theme}) => {
+  //console.log(curSymbol)
 
   const [{ loading, error, products }, dispatch] = useReducer(Reducer, {
     products: [],
@@ -36,36 +36,24 @@ const HomePage = ({curSymbol}) => {
     fetchProductsData();
   }, []);
 
-console.log(products);
+//console.log(products);
 
   return (
-    <main>
+    <section className={`${theme}_theme products_section`}>
       <h1>Featured Products</h1>
       <section className='products'>
         {
-        loading?<div>Loading</div>:error?<div>{error}</div>:
-       
-
-        products.map((product) => (
-         
-          <div className='product' key={product.slug}>
-            <Link to={`/product/${product.slug}`}>
-              <img src={product.image} alt={product.name} />
-            </Link>
-            <div className='product_info'>
-              <Link to={`/product/${product.slug}`}>
-                <span>{product.name}</span>
-              </Link>
-              <Ratings ratings= {product.rating} numReviews={product.numReviews}/>
-               <span>
-                <strong>{curSymbol} {product.price}</strong>
-              </span>
-            </div>
-          </div>
-        
-        ))}
+        loading?<div>...Loading</div>:error?<div>{error}</div>:(
+          products.map((product) => (
+          
+            <Product product={product} curSymbol={curSymbol} key={product.slug}/>
+          
+          ))
+        )
+        }
       </section>
-    </main>
+      
+    </section>
   );
 };
 

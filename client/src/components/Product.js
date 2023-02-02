@@ -21,7 +21,7 @@ const Product = ({product, curSymbol}) => {
                 </span>
                 <span>
   
-                <Button> Add to cart</Button>
+                <Button className='btn-sm'> Add to cart</Button>
                 </span>
             </div>
               </div>

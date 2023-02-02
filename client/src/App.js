@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
@@ -23,20 +24,22 @@ function toggleTheme() {
     setTheme('light')
   }
 }
-console.log(currency, curSymbol);
+
+
+//console.log(currency, curSymbol);
 
   return (
     <BrowserRouter>
-     <main className={`${theme}_theme`}>
+    <main className={`${theme}_theme`}>
 
-<Header setCurrency={setCurrency} toggleTheme={toggleTheme}/>
-
-<Routes>
-
-  <Route path='/' element={<HomePage curSymbol={curSymbol}/>} />
-  <Route path='/products/:slug' element={<ProductPage />} />
-</Routes>
-</main>
+     <Header setCurrency={setCurrency} toggleTheme={toggleTheme}/>
+     <Container fluid className='mt-4'>
+      <Routes>
+        <Route path='/' element={<HomePage curSymbol={curSymbol} theme={theme}/>} />
+        <Route path='/products/:slug' element={<ProductPage />} />
+      </Routes>
+     </Container>
+    </main>
     </BrowserRouter>
   );
 }

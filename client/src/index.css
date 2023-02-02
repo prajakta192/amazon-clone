@@ -12,26 +12,33 @@ main{
 }
 header {
   padding: 1.5rem;
-  background: #404040;
+  background-color: #404040;
   display: flex;
   justify-content: space-between;
 }
+a{
+  text-decoration: none;
+}
 header a{
   color: white;
-  text-decoration: none;
   font-size: 1.5rem;
+}
+header a:hover{
+  color:#f08804
 }
 section.products {
   display: flex;
   flex-wrap: wrap;
   margin: 1rem;
+  justify-content: center;
+  align-items: center;
 }
 .products_section{
   margin: 1rem;
 }
 .product {
   border: 1px solid #141414;
-  flex: 1;
+  /*flex: 1;*/
   margin: 1rem;
 }
 .product img {
@@ -42,6 +49,9 @@ section.products {
   display: flex;
   flex-direction: column;
   padding: 1em;
+}
+.product_info a{
+  color:#000
 }
 .toggle-btn__input{
   visibility: hidden;

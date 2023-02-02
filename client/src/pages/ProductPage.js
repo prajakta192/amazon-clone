@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useReducer } from 'react';
-import { Card, Col, ListGroup, ListGroupItem, Row, Badge, Button } from 'react-bootstrap';
+import { Card, Col, ListGroup, ListGroupItem, Row, Badge, Button, Container } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
 import { useParams } from 'react-router-dom';
 import Ratings from '../components/Ratings';
-import {reducer} from '../Reducer'
+import { reducer } from '../Reducer';
 
 
 
@@ -39,6 +39,8 @@ const ProductPage = () => {
   
   
   return (loading?<div>...Loading</div>:error?<div>{error}</div>:
+  <Container>
+
   <Row style={{maxWidth:'100vw'}}>
     <Col md={5}> 
       <img className='img-large' src={product.image} alt={product.name}/>
@@ -107,6 +109,7 @@ const ProductPage = () => {
 </Card>
     </Col>
   </Row>
+  </Container>
   );
 };
 
