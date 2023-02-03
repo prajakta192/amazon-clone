@@ -10,36 +10,48 @@ body {
 main{
   height:100vh
 }
+a{
+  text-decoration: none;
+}
+.xx_small-font{
+  font-size:0.70rem
+}
+.small-font{
+  font-size: 090rem;
+}
+/*header*/
 header {
   padding: 1.5rem;
   background-color: #404040;
   display: flex;
   justify-content: space-between;
 }
-a{
-  text-decoration: none;
-}
+
 header a{
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 header a:hover{
   color:#f08804
 }
+
+/*Products*/
 section.products {
   display: flex;
   flex-wrap: wrap;
-  margin: 1rem;
   justify-content: center;
   align-items: center;
 }
-.products_section{
-  margin: 1rem;
-}
 .product {
+  max-width: 250px;
   border: 1px solid #141414;
-  /*flex: 1;*/
+  /* flex: 1; */
   margin: 1rem;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 10px;
 }
 .product img {
   width: 100%;
@@ -48,29 +60,25 @@ section.products {
 .product_info {
   display: flex;
   flex-direction: column;
-  padding: 1em;
+  padding: 0em 1em 1em
 }
 .product_info a{
   color:#000
 }
-.toggle-btn__input{
-  visibility: hidden;
+
+/*theme toggle btn*/
+
+.theme_cart{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
-.toggle_btn{
-  width: 3.5rem;
-  height:1.5rem;
-  border-radius: 25px;
-  background-color: #82deff;
-  cursor: pointer;
-}
-.toggle-btn-section{
-  position: relative;
-}
-.toggle_btn::after{
+
+input[type="checkbox"]::before{
   content: " ";
   position: absolute;
-  top: 10px;
-  left: 4px;
+  bottom: 2px;
+  left:1px;
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -78,22 +86,33 @@ section.products {
   box-shadow: 0 5px 10px #9996;
   background-color: #fff;
 }
-.dark_theme {
-  background-color: #333;
-  color: #fff;
-  }
-  .light_theme {
-  background-color: #fff;
-  color: #333;
-  }
+input[type="checkbox"]:checked::before {
+  transform: translateX(100%);
+  background: #fff;
+}
+
+
+input[type="checkbox"]{
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  position: relative;
+  width: 2.4rem;
+  height:1.4rem;
+  border-radius: 25px;
+  background-color: #686259;
+  border: none;
+}
+  /*Ratings*/
   .rating_review{
     display: flex;
     gap:.5em;
-    margin-block-start: 1em;
   }
   .ratings i{
     color:#e3cc4d
   }
+
+  /*Add to cart btn*/
   .btn-primary{
     background-color:#f0c040;
     border: none;
@@ -112,7 +131,28 @@ section.products {
 .img-large{
   max-width: 100%;
 }
-
 .alert-danger{
+
   background: unset
 }
+/*cart*/
+.cartItem a{
+  position: relative;
+}
+.badge.rounded-pill{
+  position: absolute;
+  padding-block: 0.25em;
+    padding-inline: 0.35em;
+    font-size: 13px;
+}
+
+
+/*Theme*/
+.dark_theme {
+  background-color: #333;
+  color: #fff;
+  }
+  .light_theme {
+  background-color: #fff;
+  color: #333;
+  }
