@@ -1,12 +1,13 @@
-import { Spinner } from "react-bootstrap"
+import { Spinner } from "react-bootstrap";
 
+export default function LoadingBox(){
+ return(
+   <div style={{textAlign:"center"}}>
 
-const LoadingBox = () => {
-    return(
-        <Spinner animate='border' role='status'>
-        <span className="visually-hidden">Loading...</span>
-        </Spinner>
+       <Spinner animation="border" role="status">
+       <span className="visually-hidden">Loading...</span>
+     </Spinner>
+     </div>
     )
+   
 }
-
-export default LoadingBox

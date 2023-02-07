@@ -1,3 +1,4 @@
-export const productNotFound = (error) =>{
-    return error.response && error.response.data?.message?error.response.data.message:error.message
+export  const productNotFound = (error) => {
+    console.log(error);
+    return error.response && error.response.data?.message ? error.response.data.message:error.message
 }
