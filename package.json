@@ -4,7 +4,7 @@
   "description": "This is a code repository for the MERAN Amazon-clone Project. @the end we will create a full Responsive amazon clone. We're going to use React on the front end, with NodeJS + expressjs  on the back end.",
   "main": "index.js",
   "scripts": {
-    "build" : "[cd backend && npm install && cd ../client && npm install && npm run build] build --output public",
+    "build" : "cd backend && npm install && cd ../client && npm install && npm run build",
     "start" : "node backend/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
