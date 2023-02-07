@@ -45,7 +45,7 @@ const HomePage = ({curSymbol, theme}) => {
       <h1>Featured Products</h1>
       <section className='products'>
         {
-        loading?<LoadingBox/>:error?<ErrorMEssage variant={danger}>{error}</ErrorMEssage>:(
+        loading?<LoadingBox/>:error?<ErrorMEssage variant='danger'>{error}</ErrorMEssage>:(
           products.map((product) => (
           
             <Product product={product} curSymbol={curSymbol} key={product.slug}/>
