@@ -1,31 +1,36 @@
 import axios from 'axios';
-import React, { useEffect, useReducer } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import { Card, Col, ListGroup, ListGroupItem, Row, Badge, Button, Container } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
-import { useParams } from 'react-router-dom';
-import ErrorMEssage from '../components/ErrorMessage';
+import { useNavigate, useParams } from 'react-router-dom';
+import ErrorMessage from '../components/ErrorMessage';
 import LoadingBox from '../components/LoadingBox';
 import Ratings from '../components/Ratings';
-import { reducer } from '../Reducer';
+import { Store } from '../Store';
 import { productNotFound } from '../utils';
 
-
+import { reducer } from '../Reducer';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductPage = () => {
+  const navigate = useNavigate()
  //console.log(products)
   //const param = useParams(); //returns obj. with key/value of currrent URL.
   //console.log(param.id);
 
   const { slug } = useParams(); // will use obj destructuring method
 
-  console.log(slug)
+  //console.log(slug)
+  //store for single product
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
     product: [],
     loading: true,
     error: "",
   });
-  console.log(product)
+  //console.log(product)
 
+  //fetching product with id
   useEffect(() => {
     const fetchProductsData = async () => {
       dispatch({ type: "FETCH_REQUEST" });
@@ -40,12 +45,36 @@ const ProductPage = () => {
     fetchProductsData();
   }, [slug]);
   
-  
-  return (loading?<LoadingBox/>:error?<ErrorMEssage variant='danger'>{error}</ErrorMEssage>:
+  //Add to cart
+
+  const{state, dispatch:cxtDispatch} = useContext(Store)
+const {cart} = state
+
+ async function addToCartHandler(){
+    //console.log('product', product, 'state', state)
+    const existItem = cart.cartItem.find((item) => item._id === product._id);
+
+    const quantity = existItem?existItem.quantity + 1:1;
+
+    const {data} = await axios.get(`/api/products/${product._id}`)
+    if(data.countInStock < quantity){
+      toast(`Sorry, ${data.name} Product is out of stock. we will notify you once the product is back in stock.`);
+      return;
+      
+    }
+
+   return cxtDispatch({type : 'ADD_TO_CART', payload:{...product, quantity}}, toast('new product added to cart'));
+   
+   navigate('/cart')
+  }
+
+  return (
+   
+    loading?<LoadingBox/>:error?<ErrorMessage variant='danger'>{error}</ErrorMessage>:
   <Container>
 
-  <Row style={{maxWidth:'100vw'}}>
-    <Col md={5}> 
+  <Row style={{maxWidth:'100vw', paddingTop:'2.5rem'}}>
+    <Col md={4}> 
       <img className='img-large' src={product.image} alt={product.name}/>
     </Col>
     <Col md={4}>
@@ -68,13 +97,13 @@ const ProductPage = () => {
       </ListGroup>
      
     </Col>
-    <Col md={3}>
+    <Col md={4}>
 <Card>
-  <Card.Body>
+  
     <ListGroup>
       <ListGroupItem>
       <Row>
-    <Col>Price : {product.price}</Col>
+    <Col>Price : $ {product.price}</Col>
     </Row>
       </ListGroupItem>
       <ListGroupItem>
@@ -99,8 +128,9 @@ const ProductPage = () => {
           product.countInStock > 0 && (
             <ListGroupItem>
               <div className='d-grid'>
-                <Button variant='primary'>Add to cart</Button>
+                <Button onClick={addToCartHandler} variant='primary'>Add to cart</Button>
               </div>
+              <ToastContainer />
         </ListGroupItem>
           )
         }
@@ -108,7 +138,7 @@ const ProductPage = () => {
     </ListGroup>
    
     
-  </Card.Body>
+ 
 </Card>
     </Col>
   </Row>

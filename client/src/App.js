@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import CartPage from './pages/CartPage';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
 
@@ -30,13 +31,14 @@ function toggleTheme() {
 
   return (
     <BrowserRouter>
-    <main className={`${theme}_theme`}>
+    <main>
 
      <Header setCurrency={setCurrency} toggleTheme={toggleTheme}/>
-     <Container fluid className='mt-4'>
+     <Container fluid  className={`${theme}_theme mt-2`}>
       <Routes>
-        <Route path='/' element={<HomePage curSymbol={curSymbol} theme={theme}/>} />
+        <Route path='/' element={<HomePage curSymbol={curSymbol}/>} />
         <Route path='/products/:slug' element={<ProductPage />} />
+        <Route path='/cart' element={<CartPage/>}/>
       </Routes>
      </Container>
     </main>

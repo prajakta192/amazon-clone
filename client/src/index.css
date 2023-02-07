@@ -153,7 +153,9 @@ input[type="checkbox"]{
   border: 1px solid lightgray;
   border-radius: 7px;
 }
-
+.img-thumbnail{
+  width:80px
+}
 /*Theme*/
 .dark_theme {
   background-color: #333;
