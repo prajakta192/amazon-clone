@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
 import { Card, Col, ListGroup, ListGroupItem, Row, Badge, Button, Container } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
-import { useNavigate, useParams } from 'react-router-dom';
+import {useParams } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 import LoadingBox from '../components/LoadingBox';
 import Ratings from '../components/Ratings';
@@ -14,7 +14,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ProductPage = () => {
-  const navigate = useNavigate()
+ // const navigate = useNavigate()
  //console.log(products)
   //const param = useParams(); //returns obj. with key/value of currrent URL.
   //console.log(param.id);
@@ -65,7 +65,7 @@ const {cart} = state
 
    return cxtDispatch({type : 'ADD_TO_CART', payload:{...product, quantity}}, toast('new product added to cart'));
    
-   navigate('/cart')
+   //navigate('/cart')
   }
 
   return (

@@ -25,7 +25,7 @@ app.get('*', (req,res) => {
   res.sendFile(path.join(__dirname, '/client/build/index.html'))
 })
 
-const port = process.env.PORT || 8080;
+const port =  8080;
 
 app.listen(port, () => {
   console.log(`server is on http://localhost:${port}`);
