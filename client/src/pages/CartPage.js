@@ -5,13 +5,23 @@ import { Link } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 import { Store } from '../Store'
 
-const CartPage = () => {
+const CartPage = (props) => {
 const {state, dispatch} = useContext(Store);
 const {cart} = state
-console.log(state,dispatch, cart)
+// console.log(state,dispatch, cart)
+const {show, curSymbol} = props;
 
+let drawerClasses = 'side-drawer'
+       if(show) {
+          drawerClasses = 'side-drawer open'
+       }
+
+const minusItemHandler = (item,i) => {
+console.log(item,i);
+
+}
   return (
-    <div>
+    <div className={drawerClasses}>
 
     <Helmet>
       <title>Shopping Cart</title>
@@ -25,36 +35,38 @@ console.log(state,dispatch, cart)
                     </ErrorMessage>
   ):
   (
-        <Row>
-            <Col md={8}>
+   
+        <Row style={{minHeight:'100%',margin:'1rem'}}>
+            <Col md={12} className='padding_0'>
               
   
     <ListGroup style={{border:'1px solid lightgray'}}>
         {
-            cart.cartItem.map((item) => (
-              <ListGroup.Item key={item._id} style={{borderBottom:'1px solid lightgray', paddingTop: '1.2em'}}>
+            cart.cartItem.map((item,index) => (
+              <ListGroup.Item key={item._id} style={{borderBottom:'1px solid lightgray'}}>
                 <Row className='align-items-center'>
-                <Col md={4}>
+                <Col md={5} style={{textAlign:'center'}}>
                 <Link to={`/products/${item.slug}`}>
                     <img src={item.image} alt={item.name} className='img-fluid rounded img-thumbnail'/>
-                   <h6>
+                    
+                   <h6 style={{fontSize:'.67em', marginTop:'.6em'}}>
                    {item.name}
                     </h6>
-                   </Link>
-                </Col>
-                <Col md={3}>
-                    <Button variant='light' disabled={item.quantity === 0}
+                     </Link>
+                     </Col>
+                <Col md={3} className='d-flex align-items-center' style={{gap:'10px'}}>
+                    <Button variant='light' style={{padding:0}} disabled={item.quantity === 0}  onClick={() => minusItemHandler(item,index)}
                     >
                         <i className='fa fa-minus-circle'></i>
                     </Button>
                     <span>{item.quantity}</span>
-                    <Button variant='light' disabled={item.quantity === item.countInStock}
+                    <Button variant='light' style={{padding:0}} disabled={item.quantity === item.countInStock}
                     >
                         <i className='fa fa-plus-circle'></i>
                     </Button>
                 </Col>
-                <Col md={3}>
-                    {item.price}
+                <Col md={2}>
+                {curSymbol}{item.price}
                 </Col>
                 <Col md={2}>
                 <Button variant='light'
@@ -70,19 +82,29 @@ console.log(state,dispatch, cart)
   
                
  </Col>
-<Col md={4}>
+<Col md={12} style={{textAlign:'center'}} className='padding_0'>
     <Card>
-        <Card.Body>
+    
             <ListGroup variant='flush'>
                 <ListGroup.Item>
-                    <h6>
-                        Subtotal ({cart.cartItem.reduce((a,c) => a + c.quantity, 0)} items) : {cart.cartItem.reduce((a,c) => a + c.price* c.quantity, 0)}
+                    <h6 style={{fontSize:'.9rem'}}>
+                        Subtotal ({
+                          cart.cartItem.reduce((a,c) => a + c.quantity, 0) } items ): {curSymbol}{cart.cartItem.reduce((a,c) => a + c.price* c.quantity, 0)}
                     </h6>
                 </ListGroup.Item>
             </ListGroup>
-        </Card.Body>
+        
     </Card>
                 
+            </Col>
+            <Col md={12} className='padding_0 text-center'>
+                <ListGroup>
+                    <ListGroup.Item>
+                         <Button type='button' varaint='primary' disabled={cart.cartItem.length === 0}>
+                            Proceed to Pay
+                         </Button>
+                    </ListGroup.Item>
+                </ListGroup>
             </Col>
           
         </Row>

@@ -7,10 +7,6 @@ import Product from '../components/Product';
 import LoadingBox from '../components/LoadingBox';
 import ErrorMEssage from '../components/ErrorMessage';
 //console.log(data);
-
-
-
-
 const HomePage = ({curSymbol, theme}) => {
   //console.log(curSymbol)
 

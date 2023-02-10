@@ -26,7 +26,13 @@ function toggleTheme() {
   }
 }
 
+const [state,setState] = useState(false)
 
+function drawerToggleClickHandler() {
+  setState({
+    state: !state
+  })
+}
 //console.log(currency, curSymbol);
 
   return (
@@ -37,8 +43,8 @@ function toggleTheme() {
      <Container fluid  className={`${theme}_theme mt-2`}>
       <Routes>
         <Route path='/' element={<HomePage curSymbol={curSymbol}/>} />
-        <Route path='/products/:slug' element={<ProductPage />} />
-        <Route path='/cart' element={<CartPage/>}/>
+        <Route path='/products/:slug' element={<ProductPage curSymbol={curSymbol}/>} />
+        <Route path='/cart' element={<CartPage show={state} curSymbol={curSymbol} />}/>
       </Routes>
      </Container>
     </main>
