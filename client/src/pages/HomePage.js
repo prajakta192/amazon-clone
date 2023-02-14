@@ -1,13 +1,13 @@
 import React, { useReducer } from 'react';
-//import data from '../config/data';
 import axios from 'axios';
 import { useEffect} from 'react';
 import Reducer from '../Reducer';
 import Product from '../components/Product';
 import LoadingBox from '../components/LoadingBox';
-import ErrorMEssage from '../components/ErrorMessage';
-//console.log(data);
-const HomePage = ({curSymbol, theme}) => {
+import ErrorMessage from '../components/ErrorMessage';
+import { ToastContainer } from 'react-toastify';
+
+const HomePage = ({curSymbol}) => {
   //console.log(curSymbol)
 
   const [{ loading, error, products }, dispatch] = useReducer(Reducer, {
@@ -37,20 +37,21 @@ const HomePage = ({curSymbol, theme}) => {
 //console.log(products);
 
   return (
-    <section className={`${theme}_theme products_section`}>
-      <h1>Featured Products</h1>
+    <section className='pt-4'>
+      <h1 style={{fontSize : '1rem'}}>Featured Products</h1>
       <section className='products'>
         {
-        loading?<LoadingBox/>:error?<ErrorMEssage variant='danger'>{error}</ErrorMEssage>:(
+        loading?<LoadingBox />:error?<ErrorMessage variant='danger'>{error}</ErrorMessage>:(
           products.map((product) => (
           
             <Product product={product} curSymbol={curSymbol} key={product.slug}/>
           
           ))
+          
         )
         }
       </section>
-      
+      <ToastContainer />
     </section>
   );
 };

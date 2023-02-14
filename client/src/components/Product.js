@@ -50,7 +50,7 @@ const Product = ({product, curSymbol}) => {
                   <strong>{curSymbol} {product.price} </strong>
                 </span>
                 <span>
-  
+               
                 <Button className='btn-sm xx_small-font' onClick={addToCartHandler}> Add to cart</Button>
                
                 </span>

@@ -13,11 +13,9 @@ import { reducer } from '../Reducer';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
-
-const ProductPage = (props) => {
-  
+const ProductPage = () => {
+ 
+ //console.log(products)
   //const param = useParams(); //returns obj. with key/value of currrent URL.
   //console.log(param.id);
 
@@ -67,7 +65,7 @@ const {cart} = state
 
    return cxtDispatch({type : 'ADD_TO_CART', payload:{...product, quantity}}, toast('new product added to cart'));
    
-  //  navigate('/cart')
+   //navigate('/cart')
   }
 
   return (
@@ -91,7 +89,7 @@ const {cart} = state
           <Ratings ratings={product.rating} numReviews={product.numReviews}/>
         </ListGroupItem>
         <ListGroupItem>
-        Price: {props.curSymbol}{product.price}
+        Price: ${product.price}
       </ListGroupItem>
       <ListGroupItem>
         Description : {product.description}
@@ -105,7 +103,7 @@ const {cart} = state
     <ListGroup>
       <ListGroupItem>
       <Row>
-    <Col>Price : {props.curSymbol}{product.price}</Col>
+    <Col>Price : $ {product.price}</Col>
     </Row>
       </ListGroupItem>
       <ListGroupItem>
@@ -148,6 +146,4 @@ const {cart} = state
   );
 };
 
-
 export default ProductPage;
-

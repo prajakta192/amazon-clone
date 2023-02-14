@@ -76,7 +76,9 @@ section.products {
   overflow-y: scroll;
 }
 
-
+.side-drawer.close{
+  display: none;
+}
 /*theme toggle btn*/
 
 .theme_cart{

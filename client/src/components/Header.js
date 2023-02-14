@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { Store } from '../Store'
 
 const Header = (props) => {
+  //console.log(props);
     //console.log(props.setCurrency);
     const {setCurrency, toggleTheme}  = props;
 
@@ -12,7 +13,8 @@ const Header = (props) => {
 const{state} = useContext(Store);
 
 const {cart} = state;
-console.log(cart)
+
+//console.log(cart)
   return (
     <div style={{marginBottom:'2rem'}}>
        <header>
@@ -29,7 +31,7 @@ console.log(cart)
         <div className="theme_cart">
         <input type="checkbox" onClick={toggleTheme}/>
             <Link to='/cart'>
-            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+            <i className="fa fa-shopping-cart" aria-hidden="true" onClick={props.toggle}></i>
             {
               cart.cartItem.length > 0 && (
                 <Badge pill bg='danger'>
@@ -47,3 +49,5 @@ console.log(cart)
 }
 
 export default Header
+
+

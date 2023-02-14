@@ -1,27 +1,24 @@
-import React, { useContext } from 'react'
+import React, { useContext} from 'react'
 import {Row,Col, ListGroup, Button, Card } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 import { Store } from '../Store'
 
-const CartPage = (props) => {
+const CartPage = ({show,curSymbol}) => {
+
+    
 const {state, dispatch} = useContext(Store);
 const {cart} = state
 // console.log(state,dispatch, cart)
-const {show, curSymbol} = props;
-
-let drawerClasses = 'side-drawer'
-       if(show) {
-          drawerClasses = 'side-drawer open'
-       }
-
 const minusItemHandler = (item,i) => {
 console.log(item,i);
 
 }
+
+
   return (
-    <div className={drawerClasses}>
+    <div>
 
     <Helmet>
       <title>Shopping Cart</title>

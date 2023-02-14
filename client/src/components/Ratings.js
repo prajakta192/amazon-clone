@@ -13,7 +13,7 @@ const Ratings = (props) => {
   <span><i className={ratings >= 5?"fa fa-star": ratings >= 4.5? 'fa fa-star-half-o':'fa fa-start-o'}></i></span>
  
 </div>
-<div className='reviews'>
+<div className='reviews xx_small-font'>
   <span>{`${numReviews} Reviews`}</span>
 </div>
           </div>
