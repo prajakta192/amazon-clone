@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useContext} from 'react'
 import {Row,Col, ListGroup, Button, Card } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import ErrorMessage from '../components/ErrorMessage';
 import { Store } from '../Store'
 
-const CartPage = ({show,curSymbol}) => {
-
+const CartPage = ({curSymbol}) => {
+    const navigate = useNavigate();
     
 const {state, dispatch:cxtDispatch} = useContext(Store);
 const {cart} = state
@@ -30,6 +30,9 @@ const removeItemHandler = (item) => {
     cxtDispatch({type : 'CART_REMOVE_ITEM', payload:item})
 }
 
+const checkOutHandler = () => {
+    navigate('/signin?redirect=/shipping')
+}
   return (
     <div>
 
@@ -112,7 +115,7 @@ const removeItemHandler = (item) => {
     <Col md={12} className='padding_0 text-center'>
                 <ListGroup>
                     <ListGroup.Item>
-                         <Button type='button' varaint='primary' disabled={cart.cartItem.length === 0}>
+                         <Button type='button' varaint='primary' disabled={cart.cartItem.length === 0} onClick={checkOutHandler}>
                             Proceed to Checkout
                          </Button>
                     </ListGroup.Item>

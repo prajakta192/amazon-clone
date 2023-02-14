@@ -47,7 +47,7 @@ function drawerToggleClickHandler() {
       <Routes>
         <Route path='/' element={<HomePage curSymbol={curSymbol}/>} />
         <Route path='/products/:slug' element={<ProductPage curSymbol={curSymbol}/>} />
-      <Route path='/cart' element={<CartPage  show={state} curSymbol={curSymbol} />}/>
+      <Route path='/cart' element={<CartPage curSymbol={curSymbol} />}/>
       </Routes>
      </Container>
     </main>
