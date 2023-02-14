@@ -171,6 +171,10 @@ input[type="checkbox"]{
 .padding_0{
   padding: 0;
 }
+button[type='button'] {
+  font-size: .8rem;
+  font-family: cursive;
+}
 /*Theme*/
 .dark_theme {
   background-color: #333;

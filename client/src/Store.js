@@ -5,7 +5,7 @@ export const Store = createContext()
 
 const initialValue = {
     cart:{
-        cartItem:[]
+        cartItem:localStorage.getItem('cartItems')?JSON.parse(localStorage.getItem('CartItems')):[]
     }
 }
 
@@ -16,9 +16,15 @@ const newItem = action.payload;
 const existItem = state.cart.cartItem.find((item) => item._id === newItem._id)
 
 const cartItem = existItem?state.cart.cartItem.map((item) => item._id === existItem._id?newItem:item):[...state.cart.cartItem, newItem];
-
+localStorage.setItem('CartItems', JSON.stringify(cartItem))
 return {...state, cart:{...state.cart, cartItem}}
-       
+      
+case 'CART_REMOVE_ITEM':{
+        const cartItem = state.cart.cartItem.filter((item) => item._id !== action.payload._id);
+localStorage.setItem('CartItems', JSON.stringify(cartItem))
+
+        return {...state, cart:{...state.cart, cartItem}}
+       }
             default :
             return state;
     }

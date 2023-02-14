@@ -13,7 +13,7 @@ import { reducer } from '../Reducer';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ProductPage = () => {
+const ProductPage = ({curSymbol}) => {
  
  //console.log(products)
   //const param = useParams(); //returns obj. with key/value of currrent URL.
@@ -89,7 +89,7 @@ const {cart} = state
           <Ratings ratings={product.rating} numReviews={product.numReviews}/>
         </ListGroupItem>
         <ListGroupItem>
-        Price: ${product.price}
+        Price: {curSymbol}{product.price}
       </ListGroupItem>
       <ListGroupItem>
         Description : {product.description}
@@ -103,7 +103,7 @@ const {cart} = state
     <ListGroup>
       <ListGroupItem>
       <Row>
-    <Col>Price : $ {product.price}</Col>
+    <Col>Price : {curSymbol}{product.price}</Col>
     </Row>
       </ListGroupItem>
       <ListGroupItem>
