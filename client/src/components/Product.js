@@ -50,9 +50,10 @@ const Product = ({product, curSymbol}) => {
                   <strong>{curSymbol} {product.price} </strong>
                 </span>
                 <span>
-               
+                {product.countInStock === 0?
+                <Button variant='light' disabled>Out of stock</Button> :
                 <Button className='btn-sm xx_small-font' onClick={addToCartHandler}> Add to cart</Button>
-               
+              }
                 </span>
             </div>
               </div>
