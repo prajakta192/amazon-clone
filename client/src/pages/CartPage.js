@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useContext} from 'react'
 import {Row,Col, ListGroup, Button, Offcanvas, Stack } from 'react-bootstrap';
+import { useNavigate,Link } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import ErrorMessage from '../components/ErrorMessage';
 import { Store } from '../Store'
 
 const CartPage = ({curSymbol,isOpen}) => {
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     console.log(isOpen)
 const {closeCart, state, dispatch:cxtDispatch} = useContext(Store);
 const {cart} = state
@@ -28,11 +29,10 @@ const removeItemHandler = (item) => {
     cxtDispatch({type : 'CART_REMOVE_ITEM', payload:item})
 }
 
-// const checkOutHandler = () => {
-//     navigate('/signin?redirect=/shipping')
-// }
+
 const checkOutHandler = () => {
-    console.log('checkout')
+    console.log('checkout');
+    navigate('/signin?redirect=/shipping')
 }
   return (
     <Offcanvas show={isOpen} onHide={closeCart} placement='end'>
@@ -46,7 +46,7 @@ const checkOutHandler = () => {
 (
 
                 <ErrorMessage>
-                      {/* Cart is empty.<Nav.Link to="/" as={NavLink}>Go Shopping</Nav.Link> */}
+                      Cart is empty.<Link to="/">Go Shopping</Link>
                     
                 </ErrorMessage>
 ):

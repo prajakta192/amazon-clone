@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import { Container } from 'react-bootstrap';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
@@ -19,7 +19,6 @@ function toggleTheme() {
 
 
   return (
-    <BrowserRouter>
     <main>
 
      <Header toggleTheme={toggleTheme} />
@@ -31,7 +30,7 @@ function toggleTheme() {
       </Routes>
      </Container>
     </main>
-    </BrowserRouter>
+    
   );
 }
 
