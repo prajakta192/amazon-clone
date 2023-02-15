@@ -1,11 +1,12 @@
-import { createContext, useReducer } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
+import CartPage from "./pages/CartPage";
 
 
 export const Store = createContext()
 
 const initialValue = {
     cart:{
-        cartItem:localStorage.getItem('cartItems')?JSON.parse(localStorage.getItem('cartItems')):[]
+        cartItem: localStorage.getItem('cartItems')?JSON.parse(localStorage.getItem('cartItems')):[]
     }
 }
 
@@ -16,7 +17,9 @@ const newItem = action.payload;
 const existItem = state.cart.cartItem.find((item) => item._id === newItem._id)
 
 const cartItem = existItem?state.cart.cartItem.map((item) => item._id === existItem._id?newItem:item):[...state.cart.cartItem, newItem];
-localStorage.setItem('cartItems', JSON.stringify(cartItem))
+
+localStorage.setItem('cartItems', JSON.stringify(cartItem));
+
 return {...state, cart:{...state.cart, cartItem}}
       
 case 'CART_REMOVE_ITEM':{
@@ -31,6 +34,29 @@ localStorage.setItem('cartItems', JSON.stringify(cartItem))
 }
 export function StoreProvider(props){
     const[state, dispatch] = useReducer(cartReducer, initialValue)
-    const value = {state, dispatch}
-    return <Store.Provider value={value}>{props.children}</Store.Provider>
+    
+    //State for cart drawer
+    const [isOpen, setIsOpen] = useState(false);
+    const openCart = () => {
+        setIsOpen(true)
+    }
+    const closeCart = () => {
+        setIsOpen(false)
+    }
+
+    //state for currency
+    const [currency, setCurrency] = useState('INR');
+const [curSymbol, setCurSymbol] = useState('₹')
+
+useEffect(() => {
+    if(currency === 'INR') {setCurSymbol('₹')}
+      else if(currency === 'USD') {setCurSymbol('$')}
+    
+  },[currency])
+
+    const value = {openCart,closeCart, setCurrency, curSymbol,state, dispatch}
+
+    return <Store.Provider value={value}>{props.children}
+     <CartPage isOpen={isOpen} curSymbol={curSymbol} />
+    </Store.Provider>
 }

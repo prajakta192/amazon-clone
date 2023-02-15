@@ -7,9 +7,9 @@ import { toast} from 'react-toastify';
 import axios from 'axios';
 
 
-const Product = ({product, curSymbol}) => {
+const Product = ({product}) => {
   
-  const{state, dispatch:cxtDispatch} = useContext(Store);
+  const{ curSymbol,state, dispatch:cxtDispatch} = useContext(Store);
   const {cart} = state;
 
 
@@ -47,13 +47,14 @@ const Product = ({product, curSymbol}) => {
             <div className='mt-2' style={{display:'flex', justifyContent:'space-between',alignItems:'center'}}>
   
                 <span>
-                  <strong>{curSymbol} {product.price} </strong>
+                  <strong>{curSymbol}{product.price} </strong>
                 </span>
                 <span>
-                {product.countInStock === 0?
+               {product.countInStock === 0?
                 <Button variant='light' disabled>Out of stock</Button> :
                 <Button className='btn-sm xx_small-font' onClick={addToCartHandler}> Add to cart</Button>
               }
+                
                 </span>
             </div>
               </div>

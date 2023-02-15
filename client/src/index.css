@@ -57,27 +57,7 @@ section.products {
 .product_info a{
   color:#000
 }
-/* cart drawer */
-.side-drawer { 
-  height: 100%;
-  background: white;
-  position: fixed;
-  top: 10%;
-  right: 0;
-  width: 45%;
-  z-index: 200;
-  box-shadow: 1px 0px 7px rgba(0,0,0,0.5); 
-  transform: translateX(100%);
-  transition: transform 0.3s ease-out;
-}
-.side-drawer.open {
-  transform: translateX(0);
-  overflow-y: scroll;
-}
 
-.side-drawer.close{
-  display: none;
-}
 /*theme toggle btn*/
 
 .theme_cart{
@@ -124,22 +104,6 @@ input[type="checkbox"]{
     color:#e3cc4d
   }
 
-  /*Add to cart btn*/
-  .btn-primary{
-    background-color:#f0c040;
-    border: none;
-    color: #000;
-  }
-  .btn-primary:hover{
-    background-color: #f08804;
-    border: none;
-    transition: all 1s;
-  }
-  .btn-check:checked+.btn, .btn.active, .btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active {
-    
-    background-color: #f08804;
-    border-color: none;
-}
 .img-large{
   max-width: 100%;
 }
@@ -147,16 +111,7 @@ input[type="checkbox"]{
 
   background: unset
 }
-/*cart*/
-.cartItem a{
-  position: relative;
-}
-.badge.rounded-pill{
-  position: absolute;
-  padding-block: 0.25em;
-    padding-inline: 0.35em;
-    font-size: 13px;
-}
+
 .list-group-item,.list-group-item:last-child{
   border: 0;
 }

@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
 import { Card, Col, ListGroup, ListGroupItem, Row, Badge, Button, Container } from 'react-bootstrap';
 import { Helmet } from 'react-helmet-async';
-import {useParams } from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 import LoadingBox from '../components/LoadingBox';
 import Ratings from '../components/Ratings';
@@ -13,15 +13,11 @@ import { reducer } from '../Reducer';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ProductPage = ({curSymbol}) => {
- 
- //console.log(products)
-  //const param = useParams(); //returns obj. with key/value of currrent URL.
-  //console.log(param.id);
+const ProductPage = () => {
+
 
   const { slug } = useParams(); // will use obj destructuring method
 
-  //console.log(slug)
   //store for single product
   const [{ loading, error, product }, dispatch] = useReducer(reducer, {
     product: [],
@@ -47,9 +43,9 @@ const ProductPage = ({curSymbol}) => {
   
   //Add to cart
 
-  const{state, dispatch:cxtDispatch} = useContext(Store)
+  const{curSymbol,state, dispatch:cxtDispatch} = useContext(Store)
 const {cart} = state
-
+console.log(curSymbol)
  async function addToCartHandler(){
     //console.log('product', product, 'state', state)
     const existItem = cart.cartItem.find((item) => item._id === product._id);
@@ -72,7 +68,12 @@ const {cart} = state
    
     loading?<LoadingBox/>:error?<ErrorMessage variant='danger'>{error}</ErrorMessage>:
   <Container>
+    <div>
+      <Link style={{color:'black'}} to='/'>
 
+    <i className="fa fa-solid fa-arrow-left"></i>
+      </Link>
+    </div>
   <Row style={{maxWidth:'100vw', paddingTop:'2.5rem'}}>
     <Col md={4}> 
       <img className='img-large' src={product.image} alt={product.name}/>
@@ -136,9 +137,7 @@ const {cart} = state
         }
       </ListGroupItem>
     </ListGroup>
-   
     
- 
 </Card>
     </Col>
   </Row>

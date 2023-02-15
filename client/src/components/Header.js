@@ -1,16 +1,14 @@
 import React, { useContext } from 'react'
-import {Badge } from 'react-bootstrap'
+import {Button } from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
 import { Link } from 'react-router-dom'
 import { Store } from '../Store'
 
-const Header = (props) => {
-  //console.log(props);
-    //console.log(props.setCurrency);
-    const {setCurrency, toggleTheme}  = props;
+const Header = ({toggleTheme}) => {
+
 
     //using Context
-const{state} = useContext(Store);
+const{setCurrency,openCart, state} = useContext(Store);
 
 const {cart} = state;
 
@@ -30,17 +28,34 @@ const {cart} = state;
         </select>
         <div className="theme_cart">
         <input type="checkbox" onClick={toggleTheme}/>
-            <Link to='/cart'>
-            <i className="fa fa-shopping-cart" aria-hidden="true" onClick={props.toggle}></i>
+     
+            <Button  onClick={openCart} variant='outline-warning' className='rounded-circle' style={{ width: "2rem", height: "2rem", position: "relative", display:'flex',justifyContent:'center',alignItems:'center'}}>
+            <i className="fa fa-shopping-cart" aria-hidden="true"></i>
+           
             {
               cart.cartItem.length > 0 && (
-                <Badge pill bg='danger'>
-                  {cart.cartItem.reduce((a, c) => a + c.quantity,0)}
-                </Badge>
-                
+                <div
+                className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
+                style={{
+                  color: "white",
+                  width: "1rem",
+                  height: "1rem",
+                  fontSize:'12px',
+                  fontWeight:'bold',
+                  position: "absolute",
+                  bottom: 0,
+                  right: 0,
+                  transform: "translate(25%, 25%)",
+                }}
+              >
+                 {cart.cartItem.reduce((a, c) => a + c.quantity,0)}
+                 
+                   
+                  
+                </div>
               )
             }
-            </Link>
+             </Button>
         </div>
         </div>
       </header>

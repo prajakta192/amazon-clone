@@ -7,9 +7,8 @@ import LoadingBox from '../components/LoadingBox';
 import ErrorMessage from '../components/ErrorMessage';
 import { ToastContainer } from 'react-toastify';
 
-const HomePage = ({curSymbol}) => {
-  //console.log(curSymbol)
-
+const HomePage = () => {
+  
   const [{ loading, error, products }, dispatch] = useReducer(Reducer, {
     products: [],
     loading: true,
@@ -44,7 +43,7 @@ const HomePage = ({curSymbol}) => {
         loading?<LoadingBox />:error?<ErrorMessage variant='danger'>{error}</ErrorMessage>:(
           products.map((product) => (
           
-            <Product product={product} curSymbol={curSymbol} key={product.slug}/>
+            <Product product={product} key={product.slug}/>
           
           ))
           
