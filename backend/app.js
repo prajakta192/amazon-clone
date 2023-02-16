@@ -1,33 +1,20 @@
 const express =  require('express');
-const data =  require('./data')
+const data =  require('./data');
+const dotenv = require('dotenv').config();
+const mongoose = require('mongoose');
+const SeedRouter = require('./routes/SeedRoutes');
+const productRoutes = require('./routes/productRoutes');
 
 const app = express();
+app.use('/api/seeds', SeedRouter);
+app.use('/api/products', productRoutes);
 
-app.get('/api/products', (req, res) => {
-  //create end point & send data as response
-  res.send(data.products);
-  
-});
+//connecting to mongodb. then create schema
+mongoose.connect(process.env).then(() => {
+  console.logr('connected to db');
+}).catch(err => console.log(err.message));
 
-app.get('/api/products/slug/:slug', (req, res) => {
-  const product = data.products.find((productItem) => productItem.slug === req.params.slug);
-  console.log(product)
-if(product){
-  res.send(product);
-}else{
-  res.status(404).send({message: 'Product Not Found'})
-}
-})
 
-app.get('/api/products/:id', (req, res) => {
-  const product = data.products.find((productItem) => productItem._id === req.params.id);
-  console.log(req.params)
-if(product){
-  res.send(product);
-}else{
-  res.status(404).send({message: 'Product Not Found'})
-}
-})
 const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
