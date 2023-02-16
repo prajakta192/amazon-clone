@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
-import {Button } from 'react-bootstrap'
+import {Button, Container, Nav, Navbar} from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { Store } from '../Store'
 
 const Header = ({toggleTheme}) => {
@@ -14,18 +14,25 @@ const {cart} = state;
 
 //console.log(cart)
   return (
-    <div style={{marginBottom:'2rem'}}>
-       <header>
-        <Helmet>
+    
+        <Navbar className='bg-dark shadow-sm' expand="lg" sticky="top">
+      <Container>
+      <Helmet>
           <title>amazona</title>
         </Helmet>
-        <Link to='/'>amazona</Link>
-        <div style={{display:'flex', flex:'1', justifyContent:'end',alignItems:'center', gap:'1em'}}>
+        <Nav  className="me-auto">
 
-        <select name='currency' onChange={(e) => {setCurrency(e.target.value)}} >
+        <Nav.Link to='/' as={NavLink}>amazona</Nav.Link>
+        </Nav>
+       
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end" style={{gap:'1rem'}}>
+          
+          <select name='currency' onChange={(e) => {setCurrency(e.target.value)}} >
           <option value='INR'>INR</option>
           <option value='USD'>USD</option>
         </select>
+            
         <div className="theme_cart">
         <input type="checkbox" onClick={toggleTheme}/>
      
@@ -57,9 +64,10 @@ const {cart} = state;
             }
              </Button>
         </div>
-        </div>
-      </header>
-    </div>
+         
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 

@@ -69,7 +69,7 @@ console.log(curSymbol)
     loading?<LoadingBox/>:error?<ErrorMessage variant='danger'>{error}</ErrorMessage>:
   <Container>
     <div>
-      <Link style={{color:'black'}} to='/'>
+      <Link className='Backto_arrow' to='/'>
 
     <i className="fa fa-solid fa-arrow-left"></i>
       </Link>

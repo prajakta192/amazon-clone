@@ -22,7 +22,7 @@ function toggleTheme() {
     <main>
 
      <Header toggleTheme={toggleTheme} />
-     <Container fluid  className={`${theme}_theme mt-2`}>
+     <Container fluid  className={`${theme}_theme mt-2 py-4`}>
       <Routes>
         <Route path='/' element={<HomePage/>} />
         <Route path='/products/:slug' element={<ProductPage/>} />

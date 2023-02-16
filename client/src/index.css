@@ -12,19 +12,13 @@ a{
   font-size: 090rem;
 }
 /*header*/
-header {
-  padding: 1.5rem;
-  background-color: #404040;
-  display: flex;
-  justify-content: space-between;
-}
 
-header a{
-  color: white;
+.navbar-nav .nav-link{
+  color: white!important;
   font-size: 1.3rem;
 }
-header a:hover{
-  color:#f08804
+.navbar-nav .nav-link:hover{
+  color: #f08804!important;
 }
 
 /*Products*/
@@ -55,9 +49,14 @@ section.products {
   padding: 0em 1em 1em
 }
 .product_info a{
-  color:#000
+  color: inherit
 }
-
+.Backto_arrow{
+  color:inherit
+}
+.Backto_arrow:hover{
+  color: #f08804;
+}
 /*theme toggle btn*/
 
 .theme_cart{
@@ -99,6 +98,7 @@ input[type="checkbox"]{
   .rating_review{
     display: flex;
     gap:.5em;
+    align-items: baseline;
   }
   .ratings i{
     color:#e3cc4d
@@ -135,6 +135,6 @@ button[type='button'] {
   color: #fff;
   }
   .light_theme {
-  background-color: #fff;
+  background-color: #f0f3f6;
   color: #333;
   }
