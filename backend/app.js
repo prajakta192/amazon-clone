@@ -4,18 +4,27 @@ const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 const SeedRouter = require('./routes/SeedRoutes');
 const productRoutes = require('./routes/productRoutes');
-
-const app = express();
-app.use('/api/seeds', SeedRouter);
-app.use('/api/products', productRoutes);
+const userRoutes = require('./routes/userRoute');
 
 //connecting to mongodb. then create schema
 mongoose.connect(process.env).then(() => {
   console.logr('connected to db');
 }).catch(err => console.log(err.message));
 
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended:true}))
 
-const port = process.env.PORT || 8080;
+app.use('/api/seeds', SeedRouter);
+app.use('/api/products', productRoutes);
+app.use('/api/users', userRoutes)
+
+
+app.use((err,req,res,next) => { 
+  res.status(500).send({message: err.message})
+})
+
+const port = 8080;
 
 app.listen(port, () => {
   console.log(`server is on http://localhost:${port}`);
