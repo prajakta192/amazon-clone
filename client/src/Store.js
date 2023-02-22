@@ -28,6 +28,8 @@ localStorage.setItem('cartItems', JSON.stringify(cartItem))
 
         return {...state, cart:{...state.cart, cartItem}}
        }
+       case 'USER_SIGNIN' : 
+       return{...state, userInfo:action.payload}
             default :
             return state;
     }

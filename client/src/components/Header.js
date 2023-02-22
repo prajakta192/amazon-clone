@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import {Button, Container, Nav, Navbar} from 'react-bootstrap'
+import {Button, Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
 import { NavLink } from 'react-router-dom'
 import { Store } from '../Store'
@@ -10,7 +10,7 @@ const Header = ({toggleTheme}) => {
     //using Context
 const{setCurrency,openCart, state} = useContext(Store);
 
-const {cart} = state;
+const {cart,userInfo} = state;
 
 //console.log(cart)
   return (
@@ -25,7 +25,7 @@ const {cart} = state;
         <Nav.Link to='/' as={NavLink}>amazona</Nav.Link>
         </Nav>
        
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle aria-controls="basic-navbar-nav" className="toogle_btn"/>
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end" style={{gap:'1rem'}}>
           
           <select name='currency' onChange={(e) => {setCurrency(e.target.value)}} >
@@ -64,7 +64,19 @@ const {cart} = state;
             }
              </Button>
         </div>
-         
+        <div style={{backgroundColor:'#ffffff',fontSize:'.9rem'}}>
+
+{userInfo ? (
+   <NavDropdown title= {userInfo.name} id="dropdown-menu-align-responsive-1" align={{ lg: 'end' }} style={{backgroundColor:'#ffffff'}}>
+   <NavDropdown.Item eventKey="4.1" >{userInfo.name}</NavDropdown.Item>
+   <NavDropdown.Divider />
+   <NavDropdown.Item eventKey="4.4">Sign Out</NavDropdown.Item>
+ </NavDropdown>
+) : (
+  <Link className='nav-link' to='signin' >Sign In</Link>
+)}
+</div>
+
         </Navbar.Collapse>
       </Container>
     </Navbar>

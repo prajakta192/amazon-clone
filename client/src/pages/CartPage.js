@@ -59,27 +59,27 @@ const checkOutHandler = () => {
           <ListGroup.Item key={item._id} className='mb-3' style={{borderBottom:'1px solid lightgray'}}>
            
             <Row className="align-items-center">
-           <Col md={4}>
+           <Col xs={4}>
                 <img src={item.image} alt={item.name} className='img-fluid rounded img-thumbnail'/>
               
                <h6 style={{fontSize:'.67em', marginTop:'.6em'}}>
                {item.name}
                 </h6>
                </Col>
-               <Col md={4}>
+               <Col xs={4}>
                 <Row>
-                    <Col md={4}>
+                    <Col xs={4}>
 
                 <Button variant='light' style={{padding:0}} disabled={item.quantity === 1}  onClick={() => updateCartHandler(item, item.quantity - 1)}
                 >
                     <i className='fa fa-minus-circle'></i>
                     </Button>
                     </Col>
-                    <Col md={4}>
+                    <Col xs={4}>
 
                 <span>{item.quantity}</span>
                     </Col>
-                    <Col md={4}>
+                    <Col xs={4}>
 
                 <Button variant='light' style={{padding:0}} disabled={item.quantity === item.countInStock} onClick={() => updateCartHandler(item, item.quantity + 1)}
                 >
@@ -90,10 +90,10 @@ const checkOutHandler = () => {
                 
             
           </Col>
-          <Col md={2}>
+          <Col xs={2}>
            <span> {curSymbol}{item.price * item.quantity}</span>
            </Col>
-           <Col md={2}>
+           <Col xs={2}>
             <Button variant='light' onClick={() => removeItemHandler(item)}
                 >
                     <i className='fa fa-trash'></i>

@@ -129,6 +129,11 @@ button[type='button'] {
   font-size: .8rem;
   font-family: cursive;
 }
+.toogle_btn{
+  outline: 0;
+    background: white;
+    box-shadow: none;
+}
 /*Theme*/
 .dark_theme {
   background-color: #333;
@@ -137,4 +142,10 @@ button[type='button'] {
   .light_theme {
   background-color: #f0f3f6;
   color: #333;
+  }
+
+  @media screen and (max-width : 45em){
+    .navbar-collapse.collapse.show{
+      display: flex;
+    }
   }
