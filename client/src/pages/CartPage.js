@@ -8,7 +8,7 @@ import { Store } from '../Store'
 
 const CartPage = ({curSymbol,isOpen}) => {
     const navigate = useNavigate();
-    console.log(isOpen)
+   // console.log(isOpen)
 const {closeCart, state, dispatch:cxtDispatch} = useContext(Store);
 const {cart} = state
 // console.log(state,dispatch, cart)
@@ -16,7 +16,7 @@ const {cart} = state
 
 
 const updateCartHandler = async (item,quantity) => {
-console.log(item,quantity);
+//console.log(item,quantity);
 const {data} = await axios.get(`/api/products/${item._id}`);
     if(data.countInStock < quantity){
         toast('Sorry, Product is out of Stock');
@@ -31,7 +31,7 @@ const removeItemHandler = (item) => {
 
 
 const checkOutHandler = () => {
-    console.log('checkout');
+    //console.log('checkout');
     navigate('/signin?redirect=/shipping')
 }
   return (

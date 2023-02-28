@@ -1,17 +1,20 @@
 import React, { useContext } from 'react'
 import {Button, Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
-import { NavLink,Link } from 'react-router-dom'
+import { NavLink,Link, useNavigate } from 'react-router-dom'
 import { Store } from '../Store'
 
 const Header = ({toggleTheme}) => {
-
+const navigate = useNavigate()
 
     //using Context
-const{setCurrency,openCart, state} = useContext(Store);
+const{setCurrency,openCart, state,dispatch} = useContext(Store);
 
 const {cart,userInfo} = state;
-
+const signOutHandler = () => {
+  dispatch({type: 'USER_SIGNOUT'});
+  localStorage.removeItem('userInfo')
+}
 //console.log(cart)
   return (
     
@@ -70,7 +73,7 @@ const {cart,userInfo} = state;
    <NavDropdown title= {userInfo.name} id="dropdown-menu-align-responsive-1" align={{ lg: 'end' }} style={{backgroundColor:'#ffffff'}}>
    <NavDropdown.Item eventKey="4.1" >{userInfo.name}</NavDropdown.Item>
    <NavDropdown.Divider />
-   <NavDropdown.Item eventKey="4.4">Sign Out</NavDropdown.Item>
+   <NavDropdown.Item eventKey="4.4" onClick={signOutHandler}>Sign Out</NavDropdown.Item>
  </NavDropdown>
 ) : (
   <Link className='nav-link' to='signin' >Sign In</Link>

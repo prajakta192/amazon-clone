@@ -45,7 +45,7 @@ const ProductPage = () => {
 
   const{curSymbol,state, dispatch:cxtDispatch} = useContext(Store)
 const {cart} = state
-console.log(curSymbol)
+//console.log(curSymbol)
  async function addToCartHandler(){
     //console.log('product', product, 'state', state)
     const existItem = cart.cartItem.find((item) => item._id === product._id);
@@ -53,6 +53,7 @@ console.log(curSymbol)
     const quantity = existItem?existItem.quantity + 1:1;
 
     const {data} = await axios.get(`/api/products/${product._id}`)
+    console.log('ProductPage' , {data})
     if(data.countInStock < quantity){
       toast(`Sorry, ${data.name} Product is out of stock. we will notify you once the product is back in stock.`);
       return;

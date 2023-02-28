@@ -21,6 +21,7 @@ const Product = ({product}) => {
     const quantity = existItem?existItem.quantity + 1:1;
 
     const {data} = await axios.get(`/api/products/${product._id}`)
+    console.log('Product' , {data})
     if(data.countInStock < quantity){
       toast(`Sorry, ${data.name} Product is out of stock. we will notify you once the product is back in stock.`);
       return;

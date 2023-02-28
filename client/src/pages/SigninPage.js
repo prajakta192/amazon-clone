@@ -15,7 +15,7 @@ const SigninPage = () => {
     const curPageUrl = useLocation();
     const {search} = curPageUrl;
    const redirectInUrl = new URLSearchParams(search).get('redirect');
-   console.log(curPageUrl);
+   //console.log(curPageUrl);
    const redirect = redirectInUrl?redirectInUrl:'/';
 
    const {state, dispatch} = useContext(Store);

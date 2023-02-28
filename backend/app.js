@@ -8,13 +8,14 @@ const SeedRouter = require('./routes/SeedRoutes');
 const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoute');
 
-app.use(cors())
+
 //connecting to mongodb. then create schema
 mongoose.connect(process.env.MONGODB_URI).then(() => {
   console.log('connected to db');
 }).catch(err => console.log(err.message));
 
 const app = express();
+app.use(cors())
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 
@@ -26,7 +27,7 @@ app.use('/api/users', userRoutes)
 app.use((err,req,res,next) => { 
   res.status(500).send({message: err.message})
 })
-
+console.log(__dirname)
 app.use(express.static(path.join(__dirname, '../client/build')));
 
 app.get("*", function(_, res){
@@ -47,4 +48,4 @@ app.listen(port, () => {
 })
 }
 
-module.exports = app;
+//module.exports = app;

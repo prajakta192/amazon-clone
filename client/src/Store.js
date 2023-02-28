@@ -8,6 +8,7 @@ const initialValue = {
     userInfo:localStorage.getItem('userInfo')?JSON.parse(localStorage.getItem('userInfo')):null,
     
     cart:{
+        shippingAddress: localStorage.getItem('shippingAddress')?JSON.parse(localStorage.getItem('shippingAddress')):{},
         cartItem: localStorage.getItem('cartItems')?JSON.parse(localStorage.getItem('cartItems')):[]
     }
 }
@@ -34,6 +35,8 @@ localStorage.setItem('cartItems', JSON.stringify(cartItem))
        return{...state, userInfo:action.payload}
        case 'USER_SIGNOUT' : 
        return{...state, userInfo:null}
+       case 'SAVE_SHIPPING_ADDRESS' :
+        return{...state, cart:{...state.cart, shippingAddress:action.payload}}
        
             default :
             return state;

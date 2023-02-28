@@ -1,15 +1,21 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Container, Form } from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
+import { useNavigate } from 'react-router-dom';
+import { Store } from '../Store';
 
 const ShippingPage = () => {
+  const navigate = useNavigate()
+  const {state, dispatch} = useContext(Store);
+  const {cart : {shippingAddress}} = state
+
   const [formControls, setFormControls] = useState({
-    fullName : '',
+    fullName: '',
     address : '',
     city : '',
     pincode : ''
   });
-
+const {fullName, address, city, pincode} =formControls
   const handleChange = (e) => {
     console.log(e.target.value)
     let value = e.target.value;
@@ -24,8 +30,22 @@ const ShippingPage = () => {
       }
     })
   }
+ 
+
   const submitHandler = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    dispatch(
+      {type:'SAVE_SHIPPING_ADDRESS',
+      payload : {fullName,
+        address,
+        city,
+        pincode
+      }
+      }
+    );
+    localStorage.setItem('shippingAddress',
+    JSON.stringify({fullName, address,city,pincode}))
+    navigate('/payment')
   }
   return (
     <Container style={{width:'50vw'}}>
@@ -46,7 +66,7 @@ const ShippingPage = () => {
         </Form.Group>
         <Form.Group className='mt-3'>
           <Form.Label htmlFor='pincode'>Pin Code</Form.Label>
-          <Form.Control id='pincode' type='number' placeholder='Enter your pincode' name='pincode' required value={formControls.pincode} onChange={handleChange}></Form.Control>
+          <Form.Control id='pincode' type='text' placeholder='Enter your pincode' name='pincode' required value={formControls.pincode} onChange={handleChange}></Form.Control>
         </Form.Group>
         {/* <Form.Group>
           <Form.Label htmlFor='country'>Country</Form.Label>
