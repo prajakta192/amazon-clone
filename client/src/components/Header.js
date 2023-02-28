@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import {Button, Container, Nav, Navbar, NavDropdown} from 'react-bootstrap'
 import { Helmet } from 'react-helmet-async'
-import { NavLink } from 'react-router-dom'
+import { NavLink,Link } from 'react-router-dom'
 import { Store } from '../Store'
 
 const Header = ({toggleTheme}) => {

@@ -4,9 +4,11 @@ const Products = require('../models/ProductsSchema');
 const productRoutes = express.Router();
 
 productRoutes.get('/', async(req,res) => {
-    const products = Products.find();
+    const products = await Products.find();
+    console.log(products)
     res.send(products)
 });
+
 productRoutes.get('/slug/:slug', async(req, res) => {
     const product = await Products.findOne({slug:req.params.slug});
     console.log(product)

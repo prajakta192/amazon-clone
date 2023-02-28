@@ -1,5 +1,5 @@
 const express =  require('express');
-const data =  require('./data');
+//const data =  require('./data');
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 const SeedRouter = require('./routes/SeedRoutes');
@@ -7,8 +7,8 @@ const productRoutes = require('./routes/productRoutes');
 const userRoutes = require('./routes/userRoute');
 
 //connecting to mongodb. then create schema
-mongoose.connect(process.env).then(() => {
-  console.logr('connected to db');
+mongoose.connect(process.env.MONGODB_URI).then(() => {
+  console.log('connected to db');
 }).catch(err => console.log(err.message));
 
 const app = express();

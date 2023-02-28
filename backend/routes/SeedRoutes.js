@@ -6,7 +6,7 @@ const User = require('../models/UserModel');
 const SeedRouter = express.Router();
 
 SeedRouter.get('/', async (req,res) => {
-    Products.remove({});
+    await Products.remove({});
     const CreatedProducts = await Products.insertMany(data.products);
     //res.send(CreatedProducts)
 

@@ -7,7 +7,7 @@ import ErrorMessage from '../components/ErrorMessage';
 import LoadingBox from '../components/LoadingBox';
 import Ratings from '../components/Ratings';
 import { Store } from '../Store';
-import { productNotFound } from '../utils';
+import { errorMessage } from '../utils';
 
 import { reducer } from '../Reducer';
 import { toast, ToastContainer } from 'react-toastify';
@@ -35,7 +35,7 @@ const ProductPage = () => {
       
         dispatch({ type: "FETCH_SUCCESS", payload: result.data });
       } catch (err) {
-        dispatch({ type: "FETCH_FAIL", payload: productNotFound(err)});
+        dispatch({ type: "FETCH_FAIL", payload: errorMessage(err)});
       }
     };
     fetchProductsData();
