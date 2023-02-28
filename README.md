@@ -4,7 +4,7 @@ This is a code repository for the MERAN Amazon-clone Project.
 
 ## Front end setup
 
-1] buid React project with CRA
+1] build React project with CRA
 
 ## Setup:
 
